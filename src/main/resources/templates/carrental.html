@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Carrental </title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/favicon.ico">
+</head>
+<body>
+
+<div id="rentform">
+    <h1>Rent Form</h1>
+    <form>
+        <p>Enter Date of Birth: <input type="date" name="ssn"> <input type="text" maxlength="4" size="4"></p>
+        <p>Select Car Type:
+            <select name="cartype">
+                <option value="small">Small</option>
+                <option value="van">Van</option>
+                <option value="minibus">Minibus</option>
+            </select>
+        </p>
+
+        <p>Enter Pick up Date and Time: <input type="date" name="pickUpDate">  <input type="time" name="pickUpTime"></p>
+        <p>Enter Return Date and Time: <input type="date" name="returnDate">  <input type="time" name="returnTime"></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</div>
+
+<img id="drivingElephant" src="../static/drivingElephant.png" alt="Driving Elephant"/>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="../static/code.js"></script>
+</html>
