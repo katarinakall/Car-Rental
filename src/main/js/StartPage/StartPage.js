@@ -1,21 +1,53 @@
 import React, { Component } from 'react';
 import './StartPage.css';
 import logo from './drivingElephant.png';
+import RentalForm from '../RentalForm/RentalForm.js';
+import ReturnForm from '../ReturnForm/ReturnForm.js';
 
 class StartPage extends Component{
+    state = {
+    rent: false,
+    returnCar: false
+    }
+
+    renderRentForm = () => {
+        this.setState({rentForm: true});
+    }
+
+    renderReturnForm = () => {
+        this.setState({returnForm: true});
+    }
+
     render(){
+    const rentForm = this.state.rentForm;
+    const returnForm = this.state.returnForm;
+
+    if(rentForm){
+     return(
+       <div>
+            <RentalForm />
+       </div>)
+    }
+
+    if(returnForm){
+        return(
+            <div>
+                <ReturnForm />
+            </div>)
+    }
+
     return (
     <div className = "wrapper">
         <div className="jumbotron">
             <h2>Fluffy Elephants Carrental</h2>
         </div>
 
-<div class="buttons">
-    <button type="button" id="rent" className="btn btn-lg">Rent</button>
-    <button type="button" id="return" className="btn btn-lg">Return</button>
-</div>
+       <div className="buttons">
+         <button type="button" id="rent" onClick={this.renderRentForm} >Rent</button>
+         <button type="button" id="return" onClick={this.renderReturnForm}>Return</button>
+       </div>
 
-<img src={logo} id="drivingElephant" alt="Driving Elephant"/>
+       <img src={logo} id="drivingElephant" alt="Driving Elephant"/>
 
     </div>
          );

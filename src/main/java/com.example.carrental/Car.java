@@ -5,8 +5,10 @@ import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Entity;
+
 @Data
-@Service
+
 public class Car {
     private int bookingNumber;
     private String registrationPlate;

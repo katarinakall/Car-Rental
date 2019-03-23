@@ -2,11 +2,25 @@ body {
   font-family: sans-serif;
 }
 
+.jumbotron{
+
+ background-color: lightgrey;
+ width: auto;
+ padding: 25px;
+ margin: auto;
+ position: center;
+}
+
 .buttons{
-  margin: auto;
-  width: 50%;
-  padding: 70px;
+ padding: 25px;
+}
+
+button{
+  margin: 6px 4px;
   text-align: center;
+  font-size: 16px;
+  padding: 14px 40px;
+
 }
 
 #elephant{
@@ -25,8 +39,9 @@ body {
 
  @keyframes sideToSide {
    0%   {left:0px;}
-   33%  {left:1150px;}
-   67%  {left:0px;}
+   25%   {left:-500px;}
+   75%  {left:500px;}
+   100%  {left:0px;}
  }
 
 .btn{
