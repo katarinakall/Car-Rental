@@ -39,7 +39,7 @@ class StartPage extends Component{
     return (
     <div className = "wrapper">
         <div className="jumbotron">
-            <h2>Fluffy Elephants Carrental</h2>
+            <h2>Car Rental Application</h2>
         </div>
 
        <div className="buttons">

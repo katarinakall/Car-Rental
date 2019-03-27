@@ -7,9 +7,13 @@ class RentalForm extends Component{
         super(props);
         this.handleForm = React.createRef();
         this.state = {
-            dateOfBirth: new Date,
+            dateOfBirth: '',
+            lastFourDigits: '', 
+            carType: '',
             inputErrorDate: false,
-            currentDate: new Date()
+            pickUpDate: new Date(), 
+            pickUpTime: '',
+            mileage: ''
         }
     }
 
@@ -27,36 +31,62 @@ class RentalForm extends Component{
         }
     }
 
-    render(){
+    handleSubmit = (event) => {
+        event.preventDefault();
+        if(this.state.inputErrorDate){
+            return;
+        }
+        const data = new FormData(event.target);
+        var object = {};
+        data.forEach(function(value, key){
+            object[key] = value;
+        });
+        var json = JSON.stringify(object);
+        let token = localStorage.getItem("token");
+        fetch(process.env.REACT_APP_BACKEND_URL + "/rent", {
+            method: 'POST',
+            body: json, 
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                "Authorization": `Bearer ${token}` 
+            },
+        }).then(res => res.json())
+        .then(this.handleForm.current.reset());
+
+
+    }
+
+    render() {
     return (
     <div className = "wrapper">
        <div id="rentform">
            <h1>Rental Form</h1>
-           <form>
-                <label htmlFor="date">Enter Date of Birth</label>
+           <form className="select" onSubmit={this.handleSubmit} ref={this.handleForm}>
+                <label htmlFor="dateOfBirth">Enter Date of Birth: </label>
                            <DatePicker
                                id="dateOfBirth"
-                               name="date"
+                               name="dateOfBirth"
                                selected={this.state.currentDate}
                                onChange={this.inputValidationDate}
-                               dateFormat="yyyy-MM-dd"/> <input type="text" required pattern="[0-9]{4,4}" title="Enter your 4 last digits" maxLength="4" size="4"/>
-               <p>Select Car Type:
-                   <select id= "cartype" name="cartype">
+                               dateFormat="yyyy-MM-dd"/> <input htmlFor="lastFourDigits" type="text" required pattern="[0-9]{4,4}" title="Enter your 4 last digits" maxLength="4" size="4"/>
+               <p htmlFor="carType">Select Car Type: 
+                   <select id= "cartype" name="cartype" required value={this.state.carType} onChange={(event) => this.setState({ carType: event.target.value })}>
+                       <option value="" disabled selected>Car Type</option>
                        <option value="small">Small</option>
                        <option value="van">Van</option>
                        <option value="minibus">Minibus</option>
                    </select>
                </p>
 
-               <label htmlFor="date">Enter Pick up Date and Time</label>
+               <label htmlFor="pickUpDate">Enter Pick up Date and Time: </label>
                            <DatePicker
                                id="pickUpDate"
-                               name="date"
+                               name="pickUpDate"
                                selected={this.state.currentDate}
                                onChange={this.inputValidationDate}
                                dateFormat="yyyy-MM-dd"/> <input type="time" name="pickUpTime"/>
                <p>Mileage: <input type="number"/></p>
-               <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+               <p><input type="submit" value="Submit"/> <input type="reset" value="Reset" /></p>
            </form>
        </div>
 

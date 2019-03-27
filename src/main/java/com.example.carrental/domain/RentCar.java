@@ -1,4 +1,4 @@
-package com.example.carrental;
+package com.example.carrental.domain;
 
 import lombok.Data;
 import org.joda.time.Days;
@@ -9,32 +9,29 @@ import javax.persistence.Entity;
 
 @Data
 
-public class Car {
-    private int bookingNumber;
-    private String registrationPlate;
-    private String carType;
-    private int kmAtPickup;
+public class RentCar {
+    private Customer customer;
+    private Car car;
     private int kmAtReturn;
-    private String ssn;
     private LocalDate pickupDate;
     private LocalDate returnDate;
     private int baseDayRental;
     private int kmPrice;
 
 
-    public double calculateRentalCost(String carType) {
+    public double calculateRentalCost(CarType carType) {
         double rentalCost = 0;
         int numberOfDays = calculateNumberOfDays(pickupDate, returnDate);
-        int numberOfKm = calculateNumberOfKm(kmAtPickup, kmAtReturn);
+        int numberOfKm = calculateNumberOfKm(car.getMileage(), kmAtReturn);
 
         switch (carType) {
-            case "small":
+            case SMALL:
                 rentalCost = baseDayRental * numberOfDays;
-            break;
-            case "van":
+                break;
+            case VAN:
                 rentalCost = baseDayRental * numberOfDays * 1.2 + kmPrice * numberOfKm;
-            break;
-            case"minibus":
+                break;
+            case MINIBUS:
                 rentalCost = baseDayRental * numberOfDays * 1.7 +(kmPrice * numberOfKm * 1.5);
                 break;
         }
@@ -48,4 +45,6 @@ public class Car {
     public int calculateNumberOfDays(LocalDate pickupDate, LocalDate returnDate) {
         return Days.daysBetween(pickupDate, returnDate).getDays();
     }
+
+
 }

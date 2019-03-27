@@ -1,5 +1,6 @@
 package com.example.carrental;
 
+import com.example.carrental.domain.RentCar;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +11,7 @@ import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CarTest {
-   private Car car = new Car();
+   private RentCar car = new RentCar();
 
    @Before
     public void init() {
