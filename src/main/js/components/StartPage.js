@@ -3,6 +3,7 @@ import './StartPage.css';
 import logo from '../Resources/drivingElephant.png';
 import RentalForm from './RentalForm.js';
 import ReturnForm from './ReturnForm.js';
+import Test from './Test.js'
 
 class StartPage extends Component{
     state = {
@@ -46,7 +47,7 @@ class StartPage extends Component{
          <button type="button" id="rent" onClick={this.renderRentForm} >Rent</button>
          <button type="button" id="return" onClick={this.renderReturnForm}>Return</button>
        </div>
-
+        <Test />
        <img src={logo} id="drivingElephant" alt="Driving Elephant"/>
 
     </div>

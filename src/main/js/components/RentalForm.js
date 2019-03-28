@@ -68,9 +68,9 @@ class RentalForm extends Component{
                                name="dateOfBirth"
                                selected={this.state.currentDate}
                                onChange={this.inputValidationDate}
-                               dateFormat="yyyy-MM-dd"/> <input htmlFor="lastFourDigits" type="text" required pattern="[0-9]{4,4}" title="Enter your 4 last digits" maxLength="4" size="4"/>
+                               dateFormat="yyyy-MM-dd"/> <input htmlFor="lastFourDigits" type="text" required pattern="[0-9]{4,4}" onChange={this.setState.lastFourDigits} title="Enter your 4 last digits" maxLength="4" size="4"/>
                <p htmlFor="carType">Select Car Type: 
-                   <select id= "cartype" name="cartype" required value={this.state.carType} onChange={(event) => this.setState({ carType: event.target.value })}>
+                   <select id= "cartype" name="cartype" required value={this.setState.carType} onChange={(event) => this.setState({ carType: event.target.value })}>
                        <option value="" disabled selected>Car Type</option>
                        <option value="small">Small</option>
                        <option value="van">Van</option>
